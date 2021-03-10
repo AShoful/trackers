@@ -1,0 +1,5 @@
+.tracker_p {
+  display: flex;
+  justify-content: space-between;
+  width: 560px;
+}

@@ -8,15 +8,19 @@ import { startClock } from "./redux/action/action";
 
 function App() {
   const dispatch = useDispatch();
+  const trackers = useSelector((store) => store.trackers);
 
   useEffect(() => {
-    const timer = setInterval(() => dispatch(startClock()), 1000);
+    let timer;
+    if (trackers.length) {
+      timer = setInterval(() => dispatch(startClock()), 1000);
+    } else {
+      clearInterval(timer);
+    }
     return () => {
       clearInterval(timer);
     };
-  }, [dispatch]);
-
-  const trackers = useSelector((store) => store.trackers);
+  }, [dispatch, trackers]);
 
   return (
     <div className="App">

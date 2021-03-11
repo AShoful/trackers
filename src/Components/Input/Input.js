@@ -8,7 +8,6 @@ const Input = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value);
     const data = {
       id: Date.now(),
       name: value || "name",

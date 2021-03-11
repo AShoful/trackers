@@ -20,10 +20,10 @@ const Tracker = ({ id }) => {
   )[0];
   const tick = useSelector((store) => store.tick);
 
-  const valueClock = tick - tracker.timeStart + tracker.currentTrackValue;
+  const valueTrack = tick - tracker.timeStart + tracker.currentTrackValue;
 
-  const valueTrack = tracker.isStarted
-    ? format(new Date(valueClock))
+  const valueTrackAfterFormat = tracker.isStarted
+    ? format(new Date(valueTrack))
     : format(new Date(tracker.currentTrackValue));
 
   const handleStopTraker = (id, value) => {
@@ -39,7 +39,7 @@ const Tracker = ({ id }) => {
   const icon = (
     <span
       className="material-icons"
-      onClick={() => handleClick(id, valueClock)}
+      onClick={() => handleClick(id, valueTrack)}
     >
       {!tracker.isStarted ? "play_circle_outline" : "pause_circle_outline"}
     </span>
@@ -54,7 +54,7 @@ const Tracker = ({ id }) => {
   return (
     <div className="tracker_p">
       {tracker.name}
-      {valueTrack}
+      {valueTrackAfterFormat}
       {icon}
       {del}
     </div>

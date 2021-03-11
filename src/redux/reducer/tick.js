@@ -1,6 +1,6 @@
 import { START_TICK } from "../actionTypes";
 
-const initialState = 0;
+const initialState = Date.now();
 
 export const tick = (state = initialState, action) => {
   switch (action.type) {

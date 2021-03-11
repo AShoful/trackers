@@ -12,10 +12,9 @@ function App() {
 
   useEffect(() => {
     let timer;
-    if (trackers.length) {
+    const activeTrackers = trackers.filter((tracker) => tracker.isStarted);
+    if (activeTrackers.length) {
       timer = setInterval(() => dispatch(startClock()), 1000);
-    } else {
-      clearInterval(timer);
     }
     return () => {
       clearInterval(timer);

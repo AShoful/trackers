@@ -1,7 +1,8 @@
-import { ADD_TRACKER, DELETE_TRACKER, STOP_TRACKER } from "../actionTypes";
+import { ADD_TRACKER, DELETE_TRACKER, STOP_TRACKER } from '../actionTypes';
 
-export const addTracker = () => ({
+export const addTracker = (data) => ({
   type: ADD_TRACKER,
+  data,
 });
 
 export const deleteTracker = (id) => ({

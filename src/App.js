@@ -1,20 +1,20 @@
-import "./App.css";
-import Input from "./Components/Input/Input";
-import Tracker from "./Components/Tracker/Tracker";
-
-const TRACKERS = [
-  { name: "name", isStarted: false },
-  { name: "name", isStarted: false },
-];
+import './App.css';
+import Input from './Components/Input/Input';
+import Tracker from './Components/Tracker/Tracker';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const trackers = useSelector((store) => store);
+
   return (
     <div className="App">
       <p>tracker</p>
       <Input />
-      {TRACKERS.map((item, i) => (
-        <Tracker key={i} name={item.name} isStarted={item.isStarted} />
-      ))}
+      {!trackers.length
+        ? 'Trackers list is empty'
+        : trackers.map((tracker, i) => (
+            <Tracker key={tracker.id} id={tracker.id} />
+          ))}
     </div>
   );
 }

@@ -3,7 +3,10 @@ import {
   DELETE_TRACKER,
   STOP_TRACKER,
   START_TRACKER,
+  START_TICK,
 } from "../actionTypes";
+
+// --- action trackers
 
 export const addTracker = (data) => ({
   type: ADD_TRACKER,
@@ -15,11 +18,20 @@ export const deleteTracker = (id) => ({
   id,
 });
 
-export const startClock = () => ({
-  type: START_TRACKER,
-  ts: Date.now(),
+export const stopTracker = (id, currentTrackValue) => ({
+  type: STOP_TRACKER,
+  id,
+  currentTrackValue,
 });
 
-export const stopTracker = (id) => ({
-  type: STOP_TRACKER,
+export const startTracker = (id, currentTrackValue) => ({
+  type: START_TRACKER,
+  id,
+});
+
+// --- action tick
+
+export const startClock = () => ({
+  type: START_TICK,
+  ts: Date.now(),
 });

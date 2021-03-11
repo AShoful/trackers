@@ -12,6 +12,7 @@ const Input = () => {
     const data = {
       id: Date.now(),
       name: value || "name",
+      currentTrackValue: 0,
       timeStart: Date.now(),
       isStarted: true,
     };

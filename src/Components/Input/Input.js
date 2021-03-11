@@ -5,12 +5,13 @@ import { addTracker } from "../../redux/action/action";
 const Input = () => {
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
+  const defaultName = (date) => new Date(date).toLocaleString().split(", ")[0];
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
       id: Date.now(),
-      name: value || "name",
+      name: value || defaultName(Date.now()),
       currentTrackValue: 0,
       timeStart: Date.now(),
       isStarted: true,

@@ -1,8 +1,8 @@
-import { ADD_TRACKER, DELETE_TRACKER, STOP_TRACKER } from '../actionTypes';
+import { ADD_TRACKER, DELETE_TRACKER, STOP_TRACKER } from "../actionTypes";
 
 const initialState = [];
 
-export const reducer = (state = initialState, action) => {
+export const trackers = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TRACKER:
       return [...state, action.data];

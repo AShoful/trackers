@@ -1,19 +1,25 @@
-import React from 'react';
-import './Tracker.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteTracker } from '../../redux/action/action';
+import React from "react";
+import "./Tracker.css";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTracker } from "../../redux/action/action";
+
+const format = (t) =>
+  `${pad(t.getUTCHours())}:${pad(t.getUTCMinutes())}:${pad(t.getUTCSeconds())}`;
+
+const pad = (n) => (n < 10 ? `0${n}` : n);
 
 const Tracker = ({ id }) => {
   const dispatch = useDispatch();
   const removeTracker = (id) => dispatch(deleteTracker(id));
 
   const tracker = useSelector((state) =>
-    state.filter((item) => item.id === id)
+    state.trackers.filter((item) => item.id === id)
   )[0];
+  const tick = useSelector((store) => store.tick);
 
   const icon = (
     <span className="material-icons">
-      {!tracker.isStarted ? 'play_circle_outline' : 'pause_circle_outline'}
+      {!tracker.isStarted ? "play_circle_outline" : "pause_circle_outline"}
     </span>
   );
 
@@ -26,6 +32,7 @@ const Tracker = ({ id }) => {
   return (
     <div className="tracker_p">
       {tracker.name}
+      {format(new Date(tick - tracker.timeStart))}
       {icon}
       {del}
     </div>

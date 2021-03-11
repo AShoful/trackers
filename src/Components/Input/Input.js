@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTracker } from '../../redux/action/action';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTracker } from "../../redux/action/action";
 
 const Input = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -11,12 +11,12 @@ const Input = () => {
     console.log(value);
     const data = {
       id: Date.now(),
-      name: value || 'name',
+      name: value || "name",
       timeStart: Date.now(),
       isStarted: true,
     };
     dispatch(addTracker(data));
-    setValue('');
+    setValue("");
   };
 
   return (

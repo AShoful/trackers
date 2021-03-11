@@ -4,8 +4,12 @@ import {
   STOP_TRACKER,
   START_TRACKER,
 } from "../actionTypes";
+import { load } from "redux-localstorage-simple";
 
-const initialState = [];
+const savedTrackers = load({ namespace: "trackers-list" });
+
+const initialState =
+  savedTrackers && savedTrackers.trackers ? savedTrackers.trackers : [];
 
 export const trackers = (state = initialState, action) => {
   switch (action.type) {

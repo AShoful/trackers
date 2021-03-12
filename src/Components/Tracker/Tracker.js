@@ -42,18 +42,18 @@ const Tracker = ({ id }) => {
   const handleClick = checkStart ? handleStopTraker : handleStartTracker;
 
   return (
-    <div className={checkStart ? "tracker green" : "tracker red"}>
-      <div className="tracker_panel">
-        <span className="tracker_name">{name}</span>
+    <div className={checkStart ? "Tracker green" : "Tracker red"}>
+      <div className="Tracker_panel">
+        <span className="Tracker_name">{name}</span>
         <span>{valueTrackAfterFormat}</span>
         <span
-          className="material-icons"
+          className="material-icons button"
           onClick={() => handleClick(id, valueTrack)}
         >
           {!checkStart ? "play_circle_outline" : "pause_circle_outline"}
         </span>
       </div>
-      <span className="material-icons" onClick={() => removeTracker(id)}>
+      <span className="material-icons button" onClick={() => removeTracker(id)}>
         remove_circle_outline
       </span>
     </div>

@@ -23,13 +23,15 @@ function App() {
 
   return (
     <div className="App">
-      <p>tracker</p>
+      <h1>trackers</h1>
       <Input />
-      {!trackers.length
-        ? "Trackers list is empty"
-        : trackers.map((tracker, i) => (
-            <Tracker key={tracker.id} id={tracker.id} />
-          ))}
+      {!trackers.length ? (
+        <h3>Trackers list is empty</h3>
+      ) : (
+        trackers.map((tracker, i) => (
+          <Tracker key={tracker.id} id={tracker.id} />
+        ))
+      )}
     </div>
   );
 }

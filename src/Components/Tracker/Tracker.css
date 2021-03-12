@@ -1,4 +1,4 @@
-.tracker {
+.Tracker {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -12,14 +12,14 @@
   font-weight: 600;
 }
 
-.tracker_panel {
+.Tracker_panel {
   padding: 0 5px;
   display: flex;
   justify-content: space-between;
   width: 95%;
 }
 
-.tracker_name {
+.Tracker_name {
   width: 50%;
 }
 
@@ -31,9 +31,12 @@
   background-color: rgb(235, 192, 192);
 }
 
+.button {
+  cursor: pointer;
+}
+
 @media (max-width: 560px){
-    .tracker {
+    .Tracker {
       width: 95%;
     }   
-  
 }

@@ -1,0 +1,34 @@
+.Input {
+  margin-bottom: 15px;
+  width: 560px;
+}
+
+.Input form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid black;
+  padding: 0 5px;
+  height: 30px;
+  border-radius: 15px;
+}
+
+.Input input {
+  border: none;
+  outline: none;
+  width: 80%;
+  margin: 0 5px;
+  padding: 0 5px;
+  height: 24px;
+  font-size: 18px;
+} 
+
+.Input span {
+  cursor: pointer;
+}
+
+@media (max-width: 560px){
+  .Input {
+    width: 95%;
+  }   
+}

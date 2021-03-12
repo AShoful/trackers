@@ -24,7 +24,7 @@ export const stopTracker = (id, currentTrackValue) => ({
   currentTrackValue,
 });
 
-export const startTracker = (id, currentTrackValue) => ({
+export const startTracker = (id) => ({
   type: START_TRACKER,
   id,
 });

@@ -8,7 +8,9 @@ import { startTick } from "./redux/action/action";
 
 function App() {
   const dispatch = useDispatch();
-  const trackers = useSelector((store) => store.trackers);
+  const trackers = useSelector((store) => store.trackers).sort(
+    (a, b) => b.id - a.id
+  );
 
   useEffect(() => {
     let timer;
@@ -28,9 +30,7 @@ function App() {
       {!trackers.length ? (
         <h3>Trackers list is empty</h3>
       ) : (
-        trackers.map((tracker, i) => (
-          <Tracker key={tracker.id} id={tracker.id} />
-        ))
+        trackers.map((tracker) => <Tracker key={tracker.id} id={tracker.id} />)
       )}
     </div>
   );

@@ -31,7 +31,7 @@ export const startTracker = (id, currentTrackValue) => ({
 
 // --- action tick
 
-export const startClock = () => ({
+export const startTick = () => ({
   type: START_TICK,
   ts: Date.now(),
 });

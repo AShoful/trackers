@@ -20,11 +20,14 @@ const Tracker = ({ id }) => {
     state.trackers.filter((item) => item.id === id)
   )[0];
   const tick = useSelector((store) => store.tick);
-  const chackStart = tracker.isStarted;
+  const checkStart = tracker.isStarted;
+
+  const name =
+    tracker.name.length > 20 ? tracker.name.slice(0, 17) + "..." : tracker.name;
 
   const valueTrack = tick - tracker.timeStart + tracker.currentTrackValue;
 
-  const valueTrackAfterFormat = chackStart
+  const valueTrackAfterFormat = checkStart
     ? format(new Date(valueTrack))
     : format(new Date(tracker.currentTrackValue));
 
@@ -36,29 +39,23 @@ const Tracker = ({ id }) => {
     dispatch(startTracker(id));
   };
 
-  const handleClick = chackStart ? handleStopTraker : handleStartTracker;
-
-  const icon = (
-    <span
-      className="material-icons"
-      onClick={() => handleClick(id, valueTrack)}
-    >
-      {!chackStart ? "play_circle_outline" : "pause_circle_outline"}
-    </span>
-  );
-
-  const del = (
-    <span className="material-icons" onClick={() => removeTracker(id)}>
-      remove_circle_outline
-    </span>
-  );
+  const handleClick = checkStart ? handleStopTraker : handleStartTracker;
 
   return (
-    <div className="tracker_p">
-      {tracker.name}
-      {valueTrackAfterFormat}
-      {icon}
-      {del}
+    <div className={checkStart ? "tracker green" : "tracker red"}>
+      <div className="tracker_panel">
+        <span className="tracker_name">{name}</span>
+        <span>{valueTrackAfterFormat}</span>
+        <span
+          className="material-icons"
+          onClick={() => handleClick(id, valueTrack)}
+        >
+          {!checkStart ? "play_circle_outline" : "pause_circle_outline"}
+        </span>
+      </div>
+      <span className="material-icons" onClick={() => removeTracker(id)}>
+        remove_circle_outline
+      </span>
     </div>
   );
 };

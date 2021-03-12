@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Input from "./Components/Input/Input";
 import Tracker from "./Components/Tracker/Tracker";
-import { startClock } from "./redux/action/action";
+import { startTick } from "./redux/action/action";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ function App() {
     let timer;
     const activeTrackers = trackers.filter((tracker) => tracker.isStarted);
     if (activeTrackers.length) {
-      timer = setInterval(() => dispatch(startClock()), 1000);
+      timer = setInterval(() => dispatch(startTick()), 1000);
     }
     return () => {
       clearInterval(timer);

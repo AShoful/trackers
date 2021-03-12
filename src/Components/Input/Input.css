@@ -24,6 +24,10 @@
 } 
 
 .Input span {
+  background-color: rgb(70, 202, 70);
+  border: 1px solid rgb(70, 202, 70);
+  border-radius: 50%;
+  color: white;
   cursor: pointer;
 }
 

@@ -23,7 +23,7 @@ const Tracker = ({ id }) => {
   const checkStart = tracker.isStarted;
 
   const name =
-    tracker.name.length > 20 ? tracker.name.slice(0, 17) + "..." : tracker.name;
+    tracker.name.length > 10 ? tracker.name.slice(0, 7) + "..." : tracker.name;
 
   const valueTrack = tick - tracker.timeStart + tracker.currentTrackValue;
 

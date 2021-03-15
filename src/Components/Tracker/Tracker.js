@@ -20,6 +20,7 @@ const Tracker = ({ id }) => {
     state.trackers.filter((item) => item.id === id)
   )[0];
   const tick = useSelector((store) => store.tick);
+
   const checkStart = tracker.isStarted;
 
   const name =
@@ -35,23 +36,30 @@ const Tracker = ({ id }) => {
     dispatch(stopTracker(id, value));
   };
 
-  const handleStartTracker = (id) => {
-    dispatch(startTracker(id));
+  const handleStartTracker = (id, tick) => {
+    dispatch(startTracker(id, tick));
   };
-
-  const handleClick = checkStart ? handleStopTraker : handleStartTracker;
 
   return (
     <div className={checkStart ? "Tracker" : "Tracker stop"}>
       <div className="Tracker_panel">
         <span className="Tracker_name">{name}</span>
         <span>{valueTrackAfterFormat}</span>
-        <span
-          className="material-icons button"
-          onClick={() => handleClick(id, valueTrack)}
-        >
-          {!checkStart ? "play_circle_outline" : "pause_circle_outline"}
-        </span>
+        {!checkStart ? (
+          <span
+            className="material-icons button"
+            onClick={() => handleStartTracker(id, tick)}
+          >
+            play_circle_outline
+          </span>
+        ) : (
+          <span
+            className="material-icons button"
+            onClick={() => handleStopTraker(id, valueTrack)}
+          >
+            pause_circle_outline
+          </span>
+        )}
       </div>
       <span
         className="material-icons button delete"

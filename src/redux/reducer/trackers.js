@@ -25,7 +25,7 @@ export const trackers = (state = initialState, action) => {
 
     case START_TRACKER: {
       const st = state.filter((item) => item.id === action.id)[0];
-      st.timeStart = Date.now();
+      st.timeStart = action.tick;
       st.isStarted = true;
       return [...state];
     }

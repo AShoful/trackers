@@ -24,9 +24,10 @@ export const stopTracker = (id, currentTrackValue) => ({
   currentTrackValue,
 });
 
-export const startTracker = (id) => ({
+export const startTracker = (id, tick) => ({
   type: START_TRACKER,
   id,
+  tick,
 });
 
 // --- action tick

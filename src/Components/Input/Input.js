@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTracker } from "../../redux/action/action";
 import "./Input.css";
 
 const Input = () => {
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
+  const tick = useSelector((state) => state.tick) || Date.now();
   const defaultName = (date) => new Date(date).toLocaleString().split(", ")[0];
 
   const handleSubmit = (e) => {
@@ -14,7 +15,7 @@ const Input = () => {
       id: Date.now(),
       name: value || defaultName(Date.now()),
       currentTrackValue: 0,
-      timeStart: Date.now(),
+      timeStart: tick,
       isStarted: true,
     };
     dispatch(addTracker(data));

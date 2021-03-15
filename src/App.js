@@ -13,11 +13,8 @@ function App() {
   );
 
   useEffect(() => {
-    let timer;
-    const activeTrackers = trackers.filter((tracker) => tracker.isStarted);
-    if (activeTrackers.length) {
-      timer = setInterval(() => dispatch(startTick()), 1000);
-    }
+    const timer = setInterval(() => dispatch(startTick()), 1000);
+
     return () => {
       clearInterval(timer);
     };

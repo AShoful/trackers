@@ -18,14 +18,14 @@ export const trackers = (state = initialState, action) => {
 
     case STOP_TRACKER: {
       const st = state.filter((item) => item.id === action.id)[0];
-      st.currentTrackValue = action.currentTrackValue;
+      st.time = action.value;
       st.isStarted = false;
       return [...state];
     }
 
     case START_TRACKER: {
       const st = state.filter((item) => item.id === action.id)[0];
-      st.timeStart = action.tick;
+      st.start = action.tick;
       st.isStarted = true;
       return [...state];
     }

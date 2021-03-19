@@ -18,10 +18,10 @@ export const deleteTracker = (id) => ({
   id,
 });
 
-export const stopTracker = (id, currentTrackValue) => ({
+export const stopTracker = (id, value) => ({
   type: STOP_TRACKER,
   id,
-  currentTrackValue,
+  value,
 });
 
 export const startTracker = (id, tick) => ({

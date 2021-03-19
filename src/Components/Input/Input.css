@@ -3,7 +3,7 @@
   width: 560px;
 }
 
-.Input form {
+.Input_form {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,7 +13,7 @@
   border-radius: 15px;
 }
 
-.Input input {
+.Input_input {
   border: none;
   outline: none;
   width: 80%;
@@ -23,7 +23,7 @@
   font-size: 18px;
 } 
 
-.Input span {
+.Input_span {
   background-color: rgb(70, 202, 70);
   border: 1px solid rgb(70, 202, 70);
   border-radius: 50%;

@@ -6,31 +6,23 @@ import {
   stopTracker,
   startTracker,
 } from "../../redux/action/action";
-
-const format = (t) =>
-  `${pad(Math.floor(t / 1000 / 60 / 60))}:${pad(t.getUTCMinutes())}:${pad(
-    t.getUTCSeconds()
-  )}`;
-const pad = (n) => (n < 10 ? `0${n}` : n);
+import { format } from "./format";
 
 const Tracker = ({ id }) => {
   const dispatch = useDispatch();
   const removeTracker = (id) => dispatch(deleteTracker(id));
-  const tracker = useSelector((state) =>
+  const { name, start, time, isStarted } = useSelector((state) =>
     state.trackers.filter((item) => item.id === id)
   )[0];
   const tick = useSelector((store) => store.tick);
 
-  const checkStart = tracker.isStarted;
+  const trackName = name.length > 10 ? name.slice(0, 7) + "..." : name;
 
-  const name =
-    tracker.name.length > 10 ? tracker.name.slice(0, 7) + "..." : tracker.name;
+  const valueTrack = tick - start + time;
 
-  const valueTrack = tick - tracker.timeStart + tracker.currentTrackValue;
-
-  const valueTrackAfterFormat = checkStart
+  const valueTrackAfterFormat = isStarted
     ? format(new Date(valueTrack))
-    : format(new Date(tracker.currentTrackValue));
+    : format(new Date(time));
 
   const handleStopTraker = (id, value) => {
     dispatch(stopTracker(id, value));
@@ -41,11 +33,11 @@ const Tracker = ({ id }) => {
   };
 
   return (
-    <div className={checkStart ? "Tracker" : "Tracker stop"}>
+    <div className={isStarted ? "Tracker active" : "Tracker"}>
       <div className="Tracker_panel">
-        <span className="Tracker_name">{name}</span>
+        <span className="Tracker_name">{trackName}</span>
         <span>{valueTrackAfterFormat}</span>
-        {!checkStart ? (
+        {!isStarted ? (
           <span
             className="material-icons button"
             onClick={() => handleStartTracker(id, tick)}

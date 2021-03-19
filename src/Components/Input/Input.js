@@ -14,8 +14,8 @@ const Input = () => {
     const data = {
       id: Date.now(),
       name: value || defaultName(Date.now()),
-      currentTrackValue: 0,
-      timeStart: tick,
+      time: 0,
+      start: tick,
       isStarted: true,
     };
     dispatch(addTracker(data));
@@ -24,14 +24,15 @@ const Input = () => {
 
   return (
     <div className="Input">
-      <form onSubmit={handleSubmit}>
+      <form className="Input_form" onSubmit={handleSubmit}>
         <input
+          className="Input_input"
           type="text"
-          placeholder="enter tracker's name"
+          placeholder="enter tracker name"
           onChange={(e) => setValue(e.target.value)}
           value={value}
         />
-        <span onClick={handleSubmit} className="material-icons">
+        <span onClick={handleSubmit} className="material-icons Input_span">
           play_circle_outline
         </span>
       </form>

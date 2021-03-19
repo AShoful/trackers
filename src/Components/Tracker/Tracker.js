@@ -15,9 +15,7 @@ const Tracker = ({ id }) => {
     state.trackers.filter((item) => item.id === id)
   )[0];
   const tick = useSelector((store) => store.tick);
-
   const trackName = name.length > 10 ? name.slice(0, 7) + "..." : name;
-
   const valueTrack = tick - start + time;
 
   const valueTrackAfterFormat = isStarted

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Input from "./Components/Input/Input";
 import Tracker from "./Components/Tracker/Tracker";
 import { startTick } from "./redux/action/action";
+import { useInterval } from "./hooks/useInterval";
 
 function App() {
   const dispatch = useDispatch();
@@ -12,13 +13,7 @@ function App() {
     (a, b) => b.id - a.id
   );
 
-  useEffect(() => {
-    const timer = setInterval(() => dispatch(startTick()), 1000);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, [dispatch, trackers]);
+  useInterval(() => dispatch(startTick()), 1000);
 
   return (
     <div className="App">

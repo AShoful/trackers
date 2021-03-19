@@ -13,7 +13,7 @@ function App() {
     (a, b) => b.id - a.id
   );
 
-  useInterval(() => dispatch(startTick()), 1000);
+  useInterval(() => dispatch(startTick()), trackers.length ? 1000 : null);
 
   return (
     <div className="App">

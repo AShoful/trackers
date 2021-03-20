@@ -1,5 +1,4 @@
 import "./App.css";
-import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Input from "./Components/Input/Input";
@@ -12,8 +11,9 @@ function App() {
   const trackers = useSelector((store) => store.trackers).sort(
     (a, b) => b.id - a.id
   );
+  const trackerIsRun = trackers.filter((tracker) => tracker.isStarted);
 
-  useInterval(() => dispatch(startTick()), trackers.length ? 1000 : null);
+  useInterval(() => dispatch(startTick()), trackerIsRun.length ? 1000 : null);
 
   return (
     <div className="App">
@@ -22,7 +22,13 @@ function App() {
       {!trackers.length ? (
         <h3>Trackers list is empty</h3>
       ) : (
-        trackers.map((tracker) => <Tracker key={tracker.id} id={tracker.id} />)
+        trackers.map((tracker) => (
+          <Tracker
+            key={tracker.id}
+            isTick={trackerIsRun.length}
+            id={tracker.id}
+          />
+        ))
       )}
     </div>
   );

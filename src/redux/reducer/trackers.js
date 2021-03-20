@@ -3,6 +3,7 @@ import {
   DELETE_TRACKER,
   STOP_TRACKER,
   START_TRACKER,
+  START_TICK,
 } from "../actionTypes";
 import { load } from "redux-localstorage-simple";
 
@@ -18,15 +19,20 @@ export const trackers = (state = initialState, action) => {
 
     case STOP_TRACKER: {
       const st = state.filter((item) => item.id === action.id)[0];
-      st.time = action.value;
       st.isStarted = false;
       return [...state];
     }
 
     case START_TRACKER: {
       const st = state.filter((item) => item.id === action.id)[0];
-      st.start = action.tick;
+      st.start = Date.now() - st.time;
       st.isStarted = true;
+      return [...state];
+    }
+
+    case START_TICK: {
+      const st = state.filter((item) => item.id === action.id)[0];
+      st.time = action.tick;
       return [...state];
     }
 

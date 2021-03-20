@@ -31,7 +31,7 @@ const Input = () => {
           onChange={(e) => setValue(e.target.value)}
           value={value}
         />
-        <span onClick={handleSubmit} className="material-icons Input_span">
+        <span className="material-icons Input_span" onClick={handleSubmit}>
           play_circle_outline
         </span>
       </form>

@@ -18,21 +18,21 @@ export const deleteTracker = (id) => ({
   id,
 });
 
-export const stopTracker = (id, value) => ({
+export const stopTracker = (id) => ({
   type: STOP_TRACKER,
   id,
-  value,
 });
 
-export const startTracker = (id, tick) => ({
+export const startTracker = (id, time) => ({
   type: START_TRACKER,
   id,
-  tick,
+  time,
 });
 
 // --- action tick
 
-export const startTick = () => ({
+export const startTick = (id, tick) => ({
   type: START_TICK,
-  ts: Date.now(),
+  id,
+  tick,
 });

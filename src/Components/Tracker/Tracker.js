@@ -1,47 +1,44 @@
 import React from "react";
 import "./Tracker.css";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   deleteTracker,
   stopTracker,
   startTracker,
+  startTick,
 } from "../../redux/action/action";
+import { useInterval } from "../../hooks/useInterval";
 import { format } from "./format";
 
-const Tracker = ({ id, isTick }) => {
+const Tracker = ({ id }) => {
   const dispatch = useDispatch();
-  const { name, start, time, isStarted } = useSelector((state) =>
+  const { name, time, isStarted, start } = useSelector((state) =>
     state.trackers.filter((item) => item.id === id)
   )[0];
-
-  const tick = useSelector((store) => store.tick);
-
   const trackName = name.length > 10 ? name.slice(0, 7) + "..." : name;
 
-  const valueTrack = tick - start + time;
-
-  const valueTrackAfterFormat = isStarted
-    ? format(new Date(valueTrack))
-    : format(new Date(time));
+  useInterval(
+    () => dispatch(startTick(id, Date.now() - start)),
+    isStarted ? 1000 : null
+  );
 
   return (
-    <div className={isStarted ? "Tracker active" : "Tracker"}>
+    <div className={isStarted ? "Tracker start" : "Tracker"}>
       <div className="Tracker_panel">
         <span className="Tracker_name">{trackName}</span>
-        <span>{valueTrackAfterFormat}</span>
+        <span>{format(time)}</span>
         {!isStarted ? (
           <span
             className="material-icons button"
-            onClick={() =>
-              dispatch(startTracker(id, isTick ? tick : Date.now()))
-            }
+            onClick={() => dispatch(startTracker(id))}
           >
             play_circle_outline
           </span>
         ) : (
           <span
             className="material-icons button"
-            onClick={() => dispatch(stopTracker(id, valueTrack))}
+            onClick={() => dispatch(stopTracker(id))}
           >
             pause_circle_outline
           </span>
